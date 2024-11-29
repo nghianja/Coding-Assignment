@@ -30,6 +30,7 @@ $ source .venv/bin/activate
 2. Install FastAPI and SQLModel.
 ```
 $ pip install "fastapi[standard]"
+$ pip install "passlib[bcrypt]"
 $ pip install sqlmodel
 ```
 
@@ -45,6 +46,8 @@ $ fastapi dev app/main.py
 The following details the list of functions and their respective REST URLs provided by the system.
 
 - Login/logout as applicant or administrator.
+    - A root admin is created by default. User to replace password in `main.py` with a hashed one.
+    - *Feature to be implemented. See Todo[1].*
 - List all administrators.
 - Create a new administrator.
 - Update an administrator's details.
@@ -61,3 +64,7 @@ The following details the list of functions and their respective REST URLs provi
 - Create a new application.
 - Update an application's details.
 - Delete an application.
+
+## Todo
+
+1. Implementing [FastAPI Security](https://fastapi.tiangolo.com/tutorial/security/) for login and permission to functions based on user role.

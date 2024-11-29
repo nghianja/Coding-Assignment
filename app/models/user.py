@@ -2,7 +2,7 @@ from sqlmodel import Field, SQLModel
 
 
 class UserBase(SQLModel):
-    name: str = Field(index=True)
+    username: str = Field(index=True)
     role: str = Field(index=True)
 
 
@@ -20,6 +20,6 @@ class UserCreate(UserBase):
 
 
 class UserUpdate(SQLModel):
-    name: str | None = None
-    role: str | None = None
+    username: str | None = None
     password: str | None = None
+    role: str | None = None

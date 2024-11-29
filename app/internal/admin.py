@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get("/", response_model=list[UserPublic])
 async def read_admins(session: SessionDep):
     statement = select(User).where(User.role == "admin")
-    admins = session.exec(statement)
+    admins = session.exec(statement).all()
     return admins
 
 
