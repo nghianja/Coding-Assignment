@@ -61,6 +61,7 @@ The following details the list of functions and their respective REST URLs provi
 - Update an administrator's details.
     - PATCH http://127.0.0.1:8000/admin/{admin_id}
     - Provides username or password in request body.
+    - Returns an administrator or 404 if administrator not found.
     - *Password validation to be implemented. See Todo[2]*
 - Delete an administrator.
     - DELETE http://127.0.0.1:8000/admin/{admin_id}
@@ -78,18 +79,46 @@ The following details the list of functions and their respective REST URLs provi
 - Update an applicant's details.
     - PATCH http://127.0.0.1:8000/applicants/{applicant_id}
     - Provides username or password in request body.
+    - Returns an applicant or 404 if applicant not found.
     - *Password validation to be implemented. See Todo[2]*
 - Delete an applicant.
     - DELETE http://127.0.0.1:8000/applicants/{applicant_id}
     - Returns an okay is true or 404 if applicant not found.
 - List all financial assistance schemes.
+    - GET http://127.0.0.1:8000/schemes/
+    - Returns a list of schemes.
+- Retrieve a single scheme
+    - GET http://127.0.0.1:8000/schemes/{scheme_id}
+    - Returns a scheme or 404 if scheme not found.
 - Create a new scheme.
+    - POST http://127.0.0.1:8000/schemes/
+    - Provides name, description, minimum_age, and maximum salary. 
 - Update a scheme's details.
+    - PATCH http://127.0.0.1:8000/schemes/{scheme_id}
+    - Provides name, description, minimum_age, or maximum salary. 
+    - Returns a scheme or 404 if scheme not found.
 - Delete a scheme.
+    - DELETE http://127.0.0.1:8000/schemes/{scheme_id}
+    - Returns an okay is true or 404 if scheme not found.
 - List all applications.
+    - GET http://127.0.0.1:8000/applications/
+    - Returns a list of applications.
+- Retrieve a single application.
+    - GET http://127.0.0.1:8000/applications/{application_id}
+    - Returns an application or 404 if application not found.
+- List all application by an applicant.
+    - GET http://127.0.0.1:8000/applications/?applicant_id={applicant_id}
+    - Returns a list of applications submitted by a single applicant.
 - Create a new application.
-- Update an application's details.
+    - POST http://127.0.0.1:8000/applications/
+    - Provides applicant's id and scheme's id in request body.
+- Approve or reject an application.
+    - PATCH http://127.0.0.1:8000/applications/{application_id}/status/approved
+    - PATCH http://127.0.0.1:8000/applications/{application_id}/status/rejected
+    - Returns an application or 404 if application not found.
 - Delete an application.
+    - DELETE http://127.0.0.1:8000/applications/{application_id}
+    - Returns an okay is true or 404 if application not found.
 
 ## Todo
 
