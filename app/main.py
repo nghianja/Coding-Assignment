@@ -5,8 +5,9 @@ from sqlmodel import select, Session
 from .dependencies import create_db_and_tables, engine
 from .models.user import User
 from .models.scheme import Scheme
+from .models.application import Application
 from .internal import admin
-from .routers import applicants, schemes
+from .routers import applicants, applications, schemes
 
 
 def create_root_admin():
@@ -35,6 +36,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
+app.include_router(applications.router)
 app.include_router(applicants.router)
 app.include_router(schemes.router)
 app.include_router(admin.router, prefix="/admin", tags=["admin"])
