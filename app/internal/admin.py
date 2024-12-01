@@ -41,7 +41,6 @@ async def update_admin(admin_id: int, admin: UserUpdate, session: SessionDep):
     if admin.password != None:
         admin.password = bcrypt.hash(admin.password)
     admin_data = admin.model_dump(exclude_unset=True)
-    print(admin_data)
     admin_db.sqlmodel_update(admin_data)
     session.add(admin_db)
     session.commit()

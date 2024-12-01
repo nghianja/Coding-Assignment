@@ -41,7 +41,6 @@ async def update_applicant(applicant_id: int, applicant: UserUpdate, session: Se
     if applicant.password != None:
         applicant.password = bcrypt.hash(applicant.password)
     applicant_data = applicant.model_dump(exclude_unset=True)
-    print(applicant_data)
     applicant_db.sqlmodel_update(applicant_data)
     session.add(applicant_db)
     session.commit()
