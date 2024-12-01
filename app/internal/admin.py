@@ -2,7 +2,6 @@ from fastapi import APIRouter, HTTPException
 from passlib.hash import bcrypt
 from sqlmodel import select
 from ..dependencies import SessionDep
-from ..models.scheme import Scheme, SchemePublic
 from ..models.user import User, UserPublic, UserCreate, UserUpdate, AdminCreate
 
 router = APIRouter()
@@ -28,7 +27,6 @@ async def create_admin(user: UserCreate, session: SessionDep):
     admin = AdminCreate(username=user.username, password=user.password)
     admin_db = User.model_validate(admin)
     admin_db.password = bcrypt.hash(admin.password)
-    admin_db.role = "admin"
     session.add(admin_db)
     session.commit()
     session.refresh(admin_db)

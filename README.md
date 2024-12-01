@@ -53,7 +53,7 @@ The following details the list of functions and their respective REST URLs provi
     - Returns a list of administrators.
 - Retrieve a single administrator.
     - GET http://127.0.0.1:8000/admin/{admin_id}
-    - Returns a administrator or 404 if administrator not found.
+    - Returns an administrator or 404 if administrator not found.
 - Create a new administrator.
     - POST http://127.0.0.1:8000/admin/
     - Provides username and password in request body.
@@ -64,10 +64,24 @@ The following details the list of functions and their respective REST URLs provi
     - *Password validation to be implemented. See Todo[2]*
 - Delete an administrator.
     - DELETE http://127.0.0.1:8000/admin/{admin_id}
+    - Returns an ok is true or 404 if administrator not found.
 - List all applicants.
+    - GET http://127.0.0.1:8000/applicants/
+    - Returns a list of applicants.
+- Retrieve a single applicant.
+    - GET http://127.0.0.1:8000/applicants/{applicant_id}
+    - Returns an applicant or 404 if applicant not found.
 - Create a new applicant.
+    - POST http://127.0.0.1:8000/applicant/
+    - Provides username and password in request body.
+    - *Password validation to be implemented. See Todo[2]*
 - Update an applicant's details.
+    - PATCH http://127.0.0.1:8000/applicants/{applicant_id}
+    - Provides username or password in request body.
+    - *Password validation to be implemented. See Todo[2]*
 - Delete an applicant.
+    - DELETE http://127.0.0.1:8000/applicants/{applicant_id}
+    - Returns an okay is true or 404 if applicant not found.
 - List all financial assistance schemes.
 - Create a new scheme.
 - Update a scheme's details.

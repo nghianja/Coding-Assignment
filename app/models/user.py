@@ -27,3 +27,6 @@ class UserUpdate(SQLModel):
 class AdminCreate(UserCreate):
     role: str = "admin"
 
+
+class ApplicantCreate(UserCreate):
+    role: str = "applicant"
