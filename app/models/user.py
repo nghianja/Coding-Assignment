@@ -3,11 +3,11 @@ from sqlmodel import Field, SQLModel
 
 class UserBase(SQLModel):
     username: str = Field(index=True)
-    role: str = Field(index=True)
 
 
 class User(UserBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
+    role: str = Field(index=True)
     password: str
 
 
@@ -22,4 +22,8 @@ class UserCreate(UserBase):
 class UserUpdate(SQLModel):
     username: str | None = None
     password: str | None = None
-    role: str | None = None
+
+
+class AdminCreate(UserCreate):
+    role: str = "admin"
+

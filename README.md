@@ -46,12 +46,24 @@ $ fastapi dev app/main.py
 The following details the list of functions and their respective REST URLs provided by the system.
 
 - Login/logout as applicant or administrator.
-    - A root admin is created by default. User to replace password in `main.py` with a hashed one.
+    - A root admin is created by default. User to replace password in `main.py` with your own hashed one.
     - *Feature to be implemented. See Todo[1].*
 - List all administrators.
+    - GET http://127.0.0.1:8000/admin/
+    - Returns a list of administrators.
+- Retrieve a single administrator.
+    - GET http://127.0.0.1:8000/admin/{admin_id}
+    - Returns a administrator or 404 if administrator not found.
 - Create a new administrator.
+    - POST http://127.0.0.1:8000/admin/
+    - Provides username and password in request body.
+    - *Password validation to be implemented. See Todo[2]*
 - Update an administrator's details.
+    - PATCH http://127.0.0.1:8000/admin/{admin_id}
+    - Provides username or password in request body.
+    - *Password validation to be implemented. See Todo[2]*
 - Delete an administrator.
+    - DELETE http://127.0.0.1:8000/admin/{admin_id}
 - List all applicants.
 - Create a new applicant.
 - Update an applicant's details.
@@ -68,3 +80,4 @@ The following details the list of functions and their respective REST URLs provi
 ## Todo
 
 1. Implementing [FastAPI Security](https://fastapi.tiangolo.com/tutorial/security/) for login and permission to functions based on user role.
+2. Implementing password validation in terms of length and strength before hashing.
