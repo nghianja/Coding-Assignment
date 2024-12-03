@@ -34,12 +34,14 @@ $ pip install "passlib[bcrypt]"
 $ pip install sqlmodel
 ```
 
-3. Run the server with:
+3. Delete the `database.db` file if you want to generate a new database.
+ 
+4. Run the server with:
 ```
 $ fastapi dev app/main.py
 ```
 
-4. Open your browser at http://127.0.0.1:8000/docs to view and test the API available.
+5. Open your browser at http://127.0.0.1:8000/docs to view and test the API available.
 
 ## Usage
 
