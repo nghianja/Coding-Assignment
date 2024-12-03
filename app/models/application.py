@@ -2,7 +2,7 @@ from sqlmodel import Field, SQLModel
 
 
 class ApplicationBase(SQLModel):
-    applicant_id: int = Field(foreign_key="applicant.id")
+    applicant_id: int = Field(foreign_key="user.id")
     scheme_id: int = Field(foreign_key="scheme.id")
 
 
