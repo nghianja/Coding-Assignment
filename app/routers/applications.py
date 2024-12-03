@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from sqlmodel import select
 from ..dependencies import SessionDep
 from ..models.application import Application, ApplicationPublic, ApplicationCreate
+from ..models.user import User
 
 router = APIRouter(prefix="/applications", tags=["applications"])
 
@@ -10,6 +11,9 @@ router = APIRouter(prefix="/applications", tags=["applications"])
 async def read_applications(session: SessionDep, applicant_id: int | None = None):
     statement = select(Application)
     if applicant_id:
+        applicant = session.get(User, applicant_id)
+        if not applicant or applicant.role != "applicant":
+            raise HTTPException(status_code=404, detail="Applicant not found")
         statement = statement.where(Application.applicant_id == applicant_id)
     applications = session.exec(statement).all()
     return applications

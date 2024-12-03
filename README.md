@@ -114,6 +114,9 @@ The following details the list of functions and their respective REST URLs provi
 - Delete a scheme.
     - DELETE http://127.0.0.1:8000/schemes/{scheme_id}
     - Returns an okay is true or 404 if scheme not found.
+- Recommend schemes for an applicant.
+    - GET http://127.0.0.1:8000/schemes/?applicant_id={applicant_id}
+    - Returns a list of recommended schemes or 404 if applicant or profile not found.
 - List all applications.
     - GET http://127.0.0.1:8000/applications/
     - Returns a list of applications.
@@ -122,7 +125,7 @@ The following details the list of functions and their respective REST URLs provi
     - Returns an application or 404 if application not found.
 - List all application by an applicant.
     - GET http://127.0.0.1:8000/applications/?applicant_id={applicant_id}
-    - Returns a list of applications submitted by a single applicant.
+    - Returns a list of applications submitted by a single applicant or 404 if applicant not found.
 - Create a new application.
     - POST http://127.0.0.1:8000/applications/
     - Provides applicant's id and scheme's id in request body.

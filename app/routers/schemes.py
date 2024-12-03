@@ -2,13 +2,21 @@ from fastapi import APIRouter, HTTPException
 from sqlmodel import select
 from ..dependencies import SessionDep
 from ..models.scheme import Scheme, SchemePublic, SchemeCreate, SchemeUpdate
+from ..models.user import User
 
 router = APIRouter(prefix="/schemes", tags=["schemes"])
 
 
 @router.get("/", response_model=list[SchemePublic])
-async def read_schemes(session: SessionDep):
-    schemes = session.exec(select(Scheme)).all()
+async def read_schemes(session: SessionDep, applicant_id: int | None = None):
+    statement = select(Scheme)
+    if applicant_id:
+        applicant = session.get(User, applicant_id)
+        if not applicant or applicant.role != "applicant":
+            raise HTTPException(status_code=404, detail="Applicant not found")
+        if applicant.profile is None:
+            raise HTTPException(status_code=404, detail="Profile not found")
+    schemes = session.exec(statement).all()
     return schemes
 
 
