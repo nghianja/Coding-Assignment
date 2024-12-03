@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from sqlmodel import select
+from sqlmodel import or_, select
 from ..dependencies import SessionDep
 from ..models.scheme import Scheme, SchemePublic, SchemeCreate, SchemeUpdate
 from ..models.user import User
@@ -16,6 +16,9 @@ async def read_schemes(session: SessionDep, applicant_id: int | None = None):
             raise HTTPException(status_code=404, detail="Applicant not found")
         if applicant.profile is None:
             raise HTTPException(status_code=404, detail="Profile not found")
+        statement = statement.where(Scheme.minimum_age <= applicant.profile.age)
+        statement = statement.where(Scheme.maximum_salary >= applicant.profile.salary)
+        statement = statement.where(or_(Scheme.suitable_gender == "both", Scheme.suitable_gender == applicant.profile.gender))
     schemes = session.exec(statement).all()
     return schemes
 

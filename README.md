@@ -139,5 +139,6 @@ The following details the list of functions and their respective REST URLs provi
 
 ## Todo
 
-1. Implementing [FastAPI Security](https://fastapi.tiangolo.com/tutorial/security/) for login and permission to functions based on user role.
-2. Implementing password validation in terms of length and strength before hashing.
+1. Implement [FastAPI Security](https://fastapi.tiangolo.com/tutorial/security/) for login and permission to functions based on user role.
+2. Implement password validation in terms of length and strength before hashing.
+3. Resolve enums for SQLModel.

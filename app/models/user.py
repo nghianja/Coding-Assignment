@@ -1,16 +1,12 @@
 from sqlmodel import Field, Relationship, SQLModel
 from decimal import Decimal
-from enum import Enum
-
-
-class Gender(Enum):
-    MALE = 'male'
-    FEMALE = 'female'
+from .enums import Gender, Role
 
 
 class ProfileBase(SQLModel):
     age: int = Field(default=18)
-    gender: Gender = Field(default=Gender.MALE)
+    # gender: Gender = Field(default=Gender.MALE)
+    gender: str = Field(default="both")
     salary: Decimal = Field(default=0, decimal_places=2)
 
 
@@ -29,7 +25,7 @@ class ProfileCreate(ProfileBase):
 
 class ProfileUpdate(SQLModel):
     age: int | None = None
-    gender: Gender | None = None
+    gender: str | None = None
     salary: Decimal | None = None
 
 
@@ -39,7 +35,8 @@ class UserBase(SQLModel):
 
 class User(UserBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    role: str = Field(index=True)
+    # role: Role = Field(default=Role.GUEST)
+    role: str = Field(default="guest")
     password: str
     profile_id: int | None = Field(default=None, foreign_key="profile.id")
     profile: Profile | None = Relationship(back_populates="user")
@@ -59,8 +56,10 @@ class UserUpdate(SQLModel):
 
 
 class AdminCreate(UserCreate):
+    # role: Role = Role.ADMIN
     role: str = "admin"
 
 
 class ApplicantCreate(UserCreate):
+    # role: Role = Role.APPLICANT
     role: str = "applicant"

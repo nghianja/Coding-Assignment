@@ -1,8 +1,9 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from passlib.hash import bcrypt
-from sqlmodel import select, Session
+from sqlmodel import Enum, select, Session
 from .dependencies import create_db_and_tables, engine
+from .models.enums import Gender, Role
 from .models.user import User, Profile
 from .models.scheme import Scheme
 from .models.application import Application
