@@ -1,5 +1,12 @@
 from sqlmodel import Field, SQLModel
 from decimal import Decimal
+from enum import Enum
+
+
+class Gender(Enum):
+    MALE = 'male'
+    FEMALE = 'female'
+    BOTH = 'both'
 
 
 class SchemeBase(SQLModel):
@@ -7,6 +14,7 @@ class SchemeBase(SQLModel):
     description: str
     minimum_age: int = Field(default=18)
     maximum_salary: Decimal = Field(default=0, decimal_places=2)
+    suitable_gender: Gender = Field(default=Gender.BOTH)
 
 
 class Scheme(SchemeBase, table=True):

@@ -84,6 +84,20 @@ The following details the list of functions and their respective REST URLs provi
 - Delete an applicant.
     - DELETE http://127.0.0.1:8000/applicants/{applicant_id}
     - Returns an okay is true or 404 if applicant not found.
+- Retrieve an applicant's profile.
+    - GET http://127.0.0.1:8000/applicants/{applicant_id}/profile
+    - Returns an applicant's profile or 404 if applicant or profile not found.
+- Create an applicant's profile.
+    - POST http://127.0.0.1:8000/applicants/{applicant_id}/profile
+    - Provides age, gender, and salary in request body.
+    - Returns the applicant's profile or 404 if applicant not found or 400 if profile already exist.
+- Update an applicant's profile.
+    - PATCH http://127.0.0.1:8000/applicants/{applicant_id}/profile
+    - Provides age, gender, or salary in request body.
+    - Returns an applicant's profile or 404 if applicant or profile not found.
+- Remove an applicant's profile.
+    - DELETE http://127.0.0.1:8000/applicants/{applicant_id}/profile
+    - Returns an ok is true or 404 if applicant or profile not found.
 - List all financial assistance schemes.
     - GET http://127.0.0.1:8000/schemes/
     - Returns a list of schemes.

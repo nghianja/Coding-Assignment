@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from passlib.hash import bcrypt
 from sqlmodel import select, Session
 from .dependencies import create_db_and_tables, engine
-from .models.user import User
+from .models.user import User, Profile
 from .models.scheme import Scheme
 from .models.application import Application
 from .internal import admin
